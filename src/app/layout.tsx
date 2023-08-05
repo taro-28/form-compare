@@ -1,3 +1,4 @@
+import Link from "next/link";
 import "./globals.css";
 import type { Metadata } from "next";
 
@@ -13,7 +14,12 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
-      <body className="m-4">{children}</body>
+      <body className="m-4">
+        <Link href="/" className="text-3xl">
+          FORM COMPARE
+        </Link>
+        {children}
+      </body>
     </html>
   );
 }

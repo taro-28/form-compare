@@ -2,7 +2,7 @@ import { Form } from "./Form";
 
 export default function Page() {
   return (
-    <main>
+    <main className="mt-4">
       <h1 className="text-2xl font-bold">Browser Validation</h1>
       <p>use html client validation</p>
       <Form />
