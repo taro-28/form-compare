@@ -9,11 +9,10 @@ export const Form = () => {
     fields: {
       name: { required: true },
       age: {
-        required: true,
         min: 0,
         max: 100,
         type: "number",
-        validate: (value) => value !== 30 && "age must not be 30",
+        validate: (value) => Number(value) === 30 && "30 is not allowed",
       },
       email: { type: "email" },
       id: { pattern: "^taro-id-.+" },

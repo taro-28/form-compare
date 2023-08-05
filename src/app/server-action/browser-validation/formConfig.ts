@@ -7,7 +7,7 @@ type InputHandlerProps = Pick<JSX.IntrinsicElements["input"], "onChange">;
 
 type Fields = {
   [key: string]: InputValidationProps & {
-    validate?: (value: any) => string | undefined | null | false;
+    validate?: (value: string) => string | undefined | null | false;
   };
 };
 
@@ -39,12 +39,8 @@ export const formConfig = <T extends Fields>({
         ...props,
         name,
         defaultValue: defaultValues?.[name],
-        onChange: (reactEvent: React.ChangeEvent<HTMLInputElement>) => {
-          reactEvent.nativeEvent.target?.addEventListener("invalid", () => {
-            reactEvent.target.setCustomValidity(
-              validate?.(reactEvent.target.value) || ""
-            );
-          });
+        onChange: ({ target }: React.ChangeEvent<HTMLInputElement>) => {
+          if (validate) target.setCustomValidity(validate(target.value) || "");
         },
       },
     }),
